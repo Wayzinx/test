@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("/test")
     public String createOrder()  {
-         return "hello world";
+         return "hello world2";
     }
 }

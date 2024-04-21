@@ -1,14 +1,9 @@
-# 基于 OpenJDK 11 创建镜像
-FROM openjdk:11-jre-slim
-
-# 添加维护者信息（可选）
-LABEL maintainer="wayzinx@outlook.com"
-
-# 将编译生成的可执行jar文件复制到容器内
-COPY target/*.jar /app.jar
-
-# 暴露容器的8080端口
+#基础镜像
+FROM java:8
+#设定时区
+MAINTAINER "TEST"
+VOLUME /tmp
 EXPOSE 8080
-
-# 定义容器启动时执行的命令
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ARG JAR_FILE=target/docker-jenkins.jar
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
